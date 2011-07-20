@@ -1,0 +1,19 @@
+{
+    "name": "biz-to-me",
+    "description": "A Node.js script to redirect some traffic from catchen.biz to catchen.me",
+    "homepage": "https://github.com/CatChen/biz-to-me",
+    "version": "0.1.0",
+    "author": {
+        "name": "Cat Chen",
+        "email": "catchen@catchen.me",
+        "web": "http://catchen.me"
+    },
+    "dependencies": {
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git://github.com/CatChen/biz-to-me.git"
+        }
+    ]
+}
