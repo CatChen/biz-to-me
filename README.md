@@ -1,0 +1,1 @@
+This is a simple script used to redirect traffic from catchen.biz to catchen.me. You can use it as a reference to simple Node.js web server project.
