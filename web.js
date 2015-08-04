@@ -14,10 +14,10 @@ var server = http.createServer(function(request, response) {
     console.log('user-agent: ' + request.headers['user-agent']);
     console.log('redirect to: ' + location);
     
-    response.writeHead(302, {
+    response.writeHead(301, {
         Location: location
     });
-    response.write('Temporarily moved to <a href="' + location + '">' + location + '</a>.');
+    response.write('Permanently moved to <a href="' + location + '">' + location + '</a>.');
     response.end();
 });
 
