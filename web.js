@@ -11,6 +11,7 @@ var server = http.createServer(function(request, response) {
         url = '/'
     }
     var location = 'http://' + host + url;
+    console.log('user-agent: ' + request.headers['user-agent']);
     console.log('redirect to: ' + location);
     
     response.writeHead(302, {
