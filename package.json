@@ -2,18 +2,20 @@
     "name": "biz-to-me",
     "description": "A Node.js script to redirect some traffic from catchen.biz to catchen.me",
     "homepage": "https://github.com/CatChen/biz-to-me",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": {
         "name": "Cat Chen",
         "email": "catchen@catchen.me",
         "web": "http://catchen.me"
     },
-    "dependencies": {
+    "engines": {
+        "node": "10.5.0"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git://github.com/CatChen/biz-to-me.git"
-        }
-    ]
+    "main": "index.js",
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/CatChen/biz-to-me.git"
+    },
+    "license": "MIT"
 }

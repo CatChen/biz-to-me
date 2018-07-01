@@ -1,19 +1,20 @@
 const http = require('http');
 
 var server = http.createServer(function(request, response) {
+    var protocol = request.headers['x-forwarded-proto'];
     var host = request.headers['host'];
     var url = request.url;
-    
-    console.log('request from: http://' + host + url);
+
+    console.log('request from: ' + protocol + '://' + host + url);
     host = host.replace(/catchen\.biz$/, 'catchen.me');
     if (host == request.headers['host']) {
         host = 'catchen.me';
         url = '/'
     }
-    var location = 'http://' + host + url;
+    var location = protocol + '://' + host + url;
     console.log('user-agent: ' + request.headers['user-agent']);
     console.log('redirect to: ' + location);
-    
+
     response.writeHead(301, {
         Location: location
     });
