@@ -1,21 +1,29 @@
 {
-    "name": "biz-to-me",
-    "description": "A Node.js script to redirect some traffic from catchen.biz to catchen.me",
-    "homepage": "https://github.com/CatChen/biz-to-me",
-    "version": "0.2.0",
-    "author": {
-        "name": "Cat Chen",
-        "email": "catchen@catchen.me",
-        "web": "http://catchen.me"
-    },
-    "engines": {
-        "node": "10.5.0"
-    },
-    "main": "index.js",
-    "dependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/CatChen/biz-to-me.git"
-    },
-    "license": "MIT"
+  "name": "biz-to-me",
+  "description": "A Node.js script to redirect some traffic from catchen.biz to catchen.me",
+  "homepage": "https://github.com/CatChen/biz-to-me",
+  "version": "0.2.0",
+  "author": {
+    "name": "Cat Chen",
+    "email": "catchen@catchen.me",
+    "web": "http://catchen.me"
+  },
+  "engines": {
+    "node": "10.5.0"
+  },
+  "main": "index.js",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CatChen/biz-to-me.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
 }

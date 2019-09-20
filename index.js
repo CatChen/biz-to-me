@@ -1,28 +1,36 @@
 const http = require('http');
 
-var server = http.createServer(function(request, response) {
-    var protocol = request.headers['x-forwarded-proto'];
-    var host = request.headers['host'];
-    var url = request.url;
+const server = http.createServer(function(request, response) {
+  const url = new URL(
+    request.headers['x-forwarded-proto'] +
+      '://' +
+      request.headers['host'] +
+      request.url,
+  );
 
-    console.log('request from: ' + protocol + '://' + host + url);
-    host = host.replace(/catchen\.biz$/, 'catchen.me');
-    if (host == request.headers['host']) {
-        host = 'catchen.me';
-        url = '/'
-    }
-    var location = protocol + '://' + host + url;
-    console.log('user-agent: ' + request.headers['user-agent']);
-    console.log('redirect to: ' + location);
+  console.log('request from: ' + url.toString());
+  if (url.host.match(/catchen\.biz$/)) {
+    url.host = url.host.replace(/catchen\.biz$/, 'catchen.me');
+  } else {
+    url.protocol = 'https:';
+    url.host = 'catchen.me';
+    url.path = '/';
+  }
 
-    response.writeHead(301, {
-        Location: location
-    });
-    response.write('Permanently moved to <a href="' + location + '">' + location + '</a>.');
-    response.end();
+  const location = url.toString();
+  console.log('user-agent: ' + request.headers['user-agent']);
+  console.log('redirect to: ' + url.toString());
+
+  response.writeHead(301, {
+    Location: location,
+  });
+  response.write(
+    'Permanently moved to <a href="' + location + '">' + location + '</a>.',
+  );
+  response.end();
 });
 
-var port = process.env.PORT || 3000;
-server.listen(port, function(){
-    console.log("Listening on " + port);
+const port = process.env.PORT || 3000;
+server.listen(port, function() {
+  console.log('Listening on ' + port);
 });
