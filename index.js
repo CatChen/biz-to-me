@@ -1,19 +1,25 @@
 const http = require('http');
 
-var server = http.createServer(function(request, response) {
-  var protocol = request.headers['x-forwarded-proto'];
-  var host = request.headers['host'];
-  var url = request.url;
+const server = http.createServer(function(request, response) {
+  const url = new URL(
+    request.headers['x-forwarded-proto'] +
+      '://' +
+      request.headers['host'] +
+      request.url,
+  );
 
-  console.log('request from: ' + protocol + '://' + host + url);
-  host = host.replace(/catchen\.biz$/, 'catchen.me');
-  if (host == request.headers['host']) {
-    host = 'catchen.me';
-    url = '/';
+  console.log('request from: ' + url.toString());
+  if (url.host.match(/catchen\.biz$/)) {
+    url.host = url.host.replace(/catchen\.biz$/, 'catchen.me');
+  } else {
+    url.protocol = 'https:';
+    url.host = 'catchen.me';
+    url.path = '/';
   }
-  var location = protocol + '://' + host + url;
+
+  const location = url.toString();
   console.log('user-agent: ' + request.headers['user-agent']);
-  console.log('redirect to: ' + location);
+  console.log('redirect to: ' + url.toString());
 
   response.writeHead(301, {
     Location: location,
@@ -24,7 +30,7 @@ var server = http.createServer(function(request, response) {
   response.end();
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 server.listen(port, function() {
   console.log('Listening on ' + port);
 });
